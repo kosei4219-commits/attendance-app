@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出退勤打刻アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1>📱 出退勤打刻アプリ</h1>
+        </header>
+
+        <!-- ユーザー情報 -->
+        <section class="user-info">
+            <span class="user-icon">👤</span>
+            <span id="user-display">user01 / あなたの名前</span>
+        </section>
+
+        <!-- 打刻ボタン -->
+        <section class="punch-buttons">
+            <button id="clock-in-btn" class="btn btn-primary">
+                🏢 出勤打刻
+            </button>
+            <button id="clock-out-btn" class="btn btn-secondary">
+                🏠 退勤打刻
+            </button>
+        </section>
+
+        <!-- 勤務状況表示 -->
+        <section class="work-status">
+            <h2>📊 今日の勤務</h2>
+            <div class="status-row">
+                <span>出勤 <span id="clock-in-time">--:--</span> / 退勤 <span id="clock-out-time">--:--</span></span>
+            </div>
+            <div class="status-row">
+                <span>勤務時間: <span id="work-hours">--時間--分</span></span>
+            </div>
+        </section>
+
+        <!-- 課題完了報告ボタン -->
+        <section class="task-completion">
+            <button id="task-btn" class="btn btn-accent">
+                🎯 課題完了報告
+            </button>
+        </section>
+
+        <!-- ステータス表示 -->
+        <section class="status-message">
+            <span id="status-text">💬 準備完了</span>
+        </section>
+    </div>
+
+    <!-- 課題完了報告モーダル -->
+    <div id="task-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <h2>🎯 課題完了報告</h2>
+            <form id="task-form">
+                <label for="app-url">アプリURL:</label>
+                <input type="url" id="app-url" placeholder="https://your-github-username.github.io/..." required>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-primary">送信</button>
+                    <button type="button" id="modal-cancel-btn" class="btn btn-secondary">キャンセル</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+/* リセット・基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* メインコンテナ - レスポンシブ対応 */
+.container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 480px;
+    /* デスクトップで過度に広がらない */
+    padding: 0;
+    overflow: hidden;
+}
+
+/* ヘッダー */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px;
+    text-align: center;
+    border-bottom: 3px solid #5a67d8;
+}
+
+.header h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* ユーザー情報 */
+.user-info {
+    background: #f7fafc;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.user-icon {
+    font-size: 1.1rem;
+}
+
+/* 打刻ボタンセクション */
+.punch-buttons {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* ボタン共通スタイル */
+.btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    /* タッチ操作に最適なサイズ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* 出勤ボタン */
+.btn-primary {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* 退勤ボタン */
+.btn-secondary {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 152, 0, 0.4);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* 課題完了ボタン */
+.btn-accent {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+}
+
+.btn-accent:active {
+    transform: translateY(0);
+}
+
+/* 勤務状況表示 */
+.work-status {
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f7fafc;
+}
+
+.work-status h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #2d3748;
+}
+
+.status-row {
+    padding: 6px 0;
+    font-size: 0.95rem;
+    color: #4a5568;
+}
+
+.status-row span {
+    color: #2d3748;
+}
+
+#clock-in-time,
+#clock-out-time,
+#work-hours {
+    font-weight: 600;
+    color: #667eea;
+}
+
+/* 課題完了報告セクション */
+.task-completion {
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* ステータスメッセージ */
+.status-message {
+    padding: 14px 16px;
+    text-align: center;
+    background: #f7fafc;
+    font-size: 0.95rem;
+    color: #4a5568;
+}
+
+/* レスポンシブ対応 - スマホ縦向き */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .container {
+        border-radius: 12px;
+    }
+
+    .header h1 {
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        font-size: 0.95rem;
+        padding: 12px 16px;
+    }
+}
+
+/* デスクトップ向け追加スタイル */
+@media (min-width: 768px) {
+    body {
+        padding: 40px;
+    }
+
+    .container {
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ホバー効果を強化 */
+    .btn:not(:active):hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* =================================== */
+/* モーダルスタイル */
+/* =================================== */
+
+/* モーダルコンテナ（初期は非表示） */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+/* モーダルが表示されている時 */
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+/* オーバーレイ（背景暗転） */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+/* モーダルコンテンツ */
+.modal-content {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+    z-index: 1001;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #2d3748;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+/* フォームスタイル */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-content label {
+    font-size: 0.95rem;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.modal-content input[type="url"] {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.modal-content input[type="url"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.modal-content input[type="url"]::placeholder {
+    color: #a0aec0;
+}
+
+/* モーダル内のボタン */
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.modal-buttons .btn {
+    flex: 1;
+    padding: 12px 16px;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* モバイル向け調整 */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+
+    .modal-buttons .btn {
+        width: 100%;
+    }
+}

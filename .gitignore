@@ -1,0 +1,30 @@
+# Google Apps Script ファイル
+Code.gs
+GAS_SETUP.md
+SPREADSHEET_DEBUG.md
+POSTDATA_ERROR_FIX.md
+E_OBJECT_UNDEFINED_FIX.md
+CORS_FIX.md
+LOCAL_SERVER_SETUP.md
+DEPLOY_GUIDE.md
+
+# 開発ログ
+prompts.txt
+
+# 仕様書（プライベート情報含む）
+仕様書.md
+
+# システムファイル
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEファイル
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules（将来的に使用する可能性）
+node_modules/
+package-lock.json
