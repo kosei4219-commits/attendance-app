@@ -1,5 +1,5 @@
 // Google Apps Script API URL（デプロイ後に設定してください）
-const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbwOF9lKbFLfihJxmzj0s9e-45QBXknlitGAUPk5ANJ8JT9N8JZcjRY00dyvuCzjIqGMZQ/exec';
+const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyzflnMWKD45kjqzt4dFzK2SwSggrHAC31dgDhJVN1iYxNcm8uAgZtFNFu7gBrgUrBs0Q/exec';
 
 // デフォルトユーザー情報
 const DEFAULT_USER = {
