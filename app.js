@@ -1,5 +1,5 @@
 // Google Apps Script API URL（デプロイ後に設定してください）
-const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbwbAeXNJyV_gyGALS4BDcU8uuh_Q1B634s0mcbgJAC9rFzWggd1a9w3w5FpbMNy3pmRaQ/exec';
+const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbzTjOPcAyDu9-U8s9o35FoUHwWCXRZTAYmGCD58GqtB-K9euST7rNPB0q9Qr9ZZU0TUlw/exec';
 
 // デフォルトユーザー情報
 const DEFAULT_USER = {
@@ -265,14 +265,30 @@ function sendToGAS(data) {
 
     return fetch(GAS_API_URL, {
         method: 'POST',
-        mode: 'no-cors', // CORS回避（レスポンスは読めない）
-        body: JSON.stringify(data)
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        redirect: 'follow'
     })
-        .then(() => {
-            // no-corsモードではレスポンスの中身が読めないため、
-            // 送信が完了したことだけを確認
-            console.log('GAS送信完了:', data.action);
-            return { success: true };
+        .then(response => {
+            console.log('GAS送信成功:', data.action);
+            // GASからのレスポンスをパース
+            return response.text();
+        })
+        .then(text => {
+            try {
+                const result = JSON.parse(text);
+                if (result.success) {
+                    console.log('GAS処理成功:', result.message);
+                } else {
+                    console.error('GAS処理エラー:', result.message);
+                }
+                return result;
+            } catch (e) {
+                console.log('レスポンス:', text);
+                return { success: true };
+            }
         })
         .catch(error => {
             console.error('GAS送信エラー:', error);
