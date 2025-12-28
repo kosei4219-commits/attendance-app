@@ -265,26 +265,14 @@ function sendToGAS(data) {
 
     return fetch(GAS_API_URL, {
         method: 'POST',
+        mode: 'no-cors', // CORS回避（レスポンスは読めない）
         body: JSON.stringify(data)
     })
-        .then(response => {
-            console.log('GAS送信成功:', data.action);
-            // GASからのレスポンスをパース
-            return response.text();
-        })
-        .then(text => {
-            try {
-                const result = JSON.parse(text);
-                if (result.success) {
-                    console.log('GAS処理成功:', result.message);
-                } else {
-                    console.error('GAS処理エラー:', result.message);
-                }
-                return result;
-            } catch (e) {
-                console.log('レスポンス:', text);
-                return { success: true };
-            }
+        .then(() => {
+            // no-corsモードではレスポンスの中身が読めないため、
+            // 送信が完了したことだけを確認
+            console.log('GAS送信完了:', data.action);
+            return { success: true };
         })
         .catch(error => {
             console.error('GAS送信エラー:', error);
