@@ -265,11 +265,7 @@ function sendToGAS(data) {
 
     return fetch(GAS_API_URL, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-        redirect: 'follow'
+        body: JSON.stringify(data)
     })
         .then(response => {
             console.log('GAS送信成功:', data.action);
