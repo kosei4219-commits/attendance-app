@@ -366,17 +366,15 @@ function sendLineMessage(messageText) {
 }
 
 /**
- * レスポンスを作成（CORSヘッダー付き）
+ * レスポンスを作成（MIMEタイプ指定）
  */
 function createResponse(success, message) {
-  return ContentService.createTextOutput(JSON.stringify({
-    success: success,
-    message: message
-  }))
-  .setMimeType(ContentService.MimeType.JSON)
-  .setHeader('Access-Control-Allow-Origin', '*')
-  .setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-  .setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  return ContentService
+    .createTextOutput(JSON.stringify({
+      success: success,
+      message: message
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // ========================================
