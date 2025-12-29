@@ -359,7 +359,7 @@ function sendLineMessage(messageText) {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + LINE_ACCESS_TOKEN
+      'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
     },
     payload: JSON.stringify(payload)
   };
