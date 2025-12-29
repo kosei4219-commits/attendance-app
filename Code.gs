@@ -51,6 +51,14 @@ function doGet(e) {
 }
 
 /**
+ * OPTIONSリクエストを処理（CORSプリフライト）
+ */
+function doOptions(e) {
+  return ContentService.createTextOutput('')
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
+/**
  * POSTリクエストを処理
  */
 function doPost(e) {
