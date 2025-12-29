@@ -263,53 +263,30 @@ function sendToGAS(data) {
         return Promise.resolve();
     }
 
-    // 本番環境（GitHub Pages）ではno-corsモードを使用
-    const isProduction = window.location.hostname.includes('github.io');
-
-    const fetchOptions = {
+    // Content-Type: text/plain を使用してプリフライトリクエストを回避
+    return fetch(GAS_API_URL, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain'
+        },
         body: JSON.stringify(data)
-    };
-
-    // 本番環境ではno-corsモードでCORSエラーを回避
-    if (isProduction) {
-        fetchOptions.mode = 'no-cors';
-    } else {
-        // ローカル環境では通常モード（レスポンス確認可能）
-        fetchOptions.headers = {
-            'Content-Type': 'application/json'
-        };
-    }
-
-    return fetch(GAS_API_URL, fetchOptions)
+    })
         .then(response => {
-            if (isProduction) {
-                // no-corsモードではレスポンスが読めないので成功とみなす
-                console.log('GAS送信完了:', data.action);
-                return { success: true };
-            } else {
-                // ローカル環境ではレスポンスを確認
-                console.log('GAS送信成功:', data.action);
-                return response.text();
-            }
+            console.log('GAS送信成功:', data.action);
+            return response.text();
         })
-        .then(result => {
-            if (isProduction) {
-                return result;
-            } else {
-                // ローカル環境のみレスポンスをパース
-                try {
-                    const parsed = JSON.parse(result);
-                    if (parsed.success) {
-                        console.log('GAS処理成功:', parsed.message);
-                    } else {
-                        console.error('GAS処理エラー:', parsed.message);
-                    }
-                    return parsed;
-                } catch (e) {
-                    console.log('レスポンス:', result);
-                    return { success: true };
+        .then(text => {
+            try {
+                const result = JSON.parse(text);
+                if (result.success) {
+                    console.log('GAS処理成功:', result.message);
+                } else {
+                    console.error('GAS処理エラー:', result.message);
                 }
+                return result;
+            } catch (e) {
+                console.log('レスポンス:', text);
+                return { success: true };
             }
         })
         .catch(error => {
