@@ -334,11 +334,6 @@ function initializeSheet(sheet, sheetName) {
  * LINE通知を送信
  */
 function sendLineMessage(messageText) {
-　// LINE通知は一時的に無効化
-  Logger.log('LINE通知スキップ: ' + messageText);
-  return;
-  
-  // 以下のコードは実行されない
   const url = 'https://api.line.me/v2/bot/message/push';
 
   
